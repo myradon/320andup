@@ -10,6 +10,11 @@
 /* Variables =================================================== */
 
 // 1. ROOT 					==============================
+@base-url  				  : "http://www.example.com/";
+@url-webfonts				: "http://www.example.com/webfonts/";
+@url-images					: "http://www.example.com/img/";
+// Usage example;
+// src: url('@{url-webfonts}/Merriweather-Sans/merriweathersans-light-webfont.eot');
 
 @bodycolor : @white;
 @textcolor : black;
@@ -18,7 +23,9 @@
 
 @basefont : "Helvetica Neue", Helvetica, Arial, sans-serif;
 @basefontsize : 16;
-@baselineheight : 1.5em;
+@scale : 1.618;
+@baseline : round(@basefontsize * 0.75px);
+@baselineheight : @baseline * 2;
 @baseheadingfont : inherit;
 @baseheadingfontweight : bold;
 @baseheadingfontcolor : inherit;

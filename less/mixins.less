@@ -12,10 +12,24 @@
 // 1. ROOT 					==============================
 // 2. TYPOGRAPHY 			==============================
 
-.font-size(@font-size: 16){
-@rem: (@font-size / 10);
-font-size : @font-size * 1px;
-font-size : ~"@{rem}rem"; }
+// .font-size(@font-size: 16){
+// @rem: (@font-size / 10);
+// font-size : @font-size * 1px;
+// font-size : ~"@{rem}rem"; }
+// Superhandy, as I say myself, font-size LESS-mixins. they work-thumbs allready with LESS v1.3.x
+// @TODO / @FIXME proper calculation of margins
+.font-size(@size: 16, @scale: 1, @pow: 1) {
+  @multi          : `Math.pow(@{scale}, @{pow})`;
+	font-size       : 1px * round(@size * @multi);
+	font-size       : 1rem * round(@size * @multi) / 10;
+	line-height     : ceil((@size * @multi) / @baseline) * @baseline;
+	margin-bottom   : 2px * @baseline;
+}
+
+.font-size-inherit(@scale: 1.618, @pow: -1) {
+	@size           : ~`Math.pow(@{scale}, @{pow}).toFixed(3) + 'em'`;
+	font-size       : @size;    //font-size is measured in ems
+}
 
 .text-overflow() {
 overflow : hidden;
